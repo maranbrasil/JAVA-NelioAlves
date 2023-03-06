@@ -1,13 +1,12 @@
 package com.example.nelioalvesjava;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import java.util.Locale;
+import java.util.Scanner;
 
-@SpringBootApplication
 public class NelioAlvesJavaApplication {
-
 	public static void main(String[] args) {
-		SpringApplication.run(NelioAlvesJavaApplication.class, args);
-	}
+		Locale.setDefault(Locale.US);
+		Scanner sc = new Scanner(System.in);
 
+	}
 }
