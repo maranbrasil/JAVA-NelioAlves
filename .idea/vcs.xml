@@ -2,5 +2,11 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Java-Maran/new_file" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Java-Maran/test/Maran-exercises/stream-exercises" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Java-Maran/test/NelioAlves-java" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/NelioAlves-Java/Java-Maran/new_file" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/NelioAlves-Java/Java-Maran/test/Maran-exercises/stream-exercises" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/NelioAlves-Java/Java-Maran/test/NelioAlves-java" vcs="Git" />
   </component>
 </project>
