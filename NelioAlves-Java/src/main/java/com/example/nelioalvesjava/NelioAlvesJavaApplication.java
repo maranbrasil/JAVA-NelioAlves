@@ -43,7 +43,7 @@ public class NelioAlvesJavaApplication {
 		System.out.println("Parseado d09 = " + d09);
 
 		LocalDate d10 = LocalDate.of(2023, 10, 05);
-		System.out.println("Parseado d09 = " + d10);
+		System.out.println("Parseado d10 = " + d10);
 		sc.close();
 	}
 }
