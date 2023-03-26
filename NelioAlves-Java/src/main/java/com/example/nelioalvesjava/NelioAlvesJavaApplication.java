@@ -1,9 +1,9 @@
 package com.example.nelioalvesjava;
 
-import Entities.Department;
-import Entities.HourContract;
-import Entities.Worker;
-import Entities.enums.WorkerLevel;
+import Entities2.Department;
+import Entities2.HourContract;
+import Entities2.Worker;
+import Entities2.enums.WorkerLevel;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -30,6 +30,7 @@ public class NelioAlvesJavaApplication {
 		double baseSalary = sc.nextDouble();
 
 		Worker worker = new Worker(name, WorkerLevel.valueOf(workerLevel), baseSalary, new Department(departmentName));
+		// apos ter todos os dados pra inicializar um worker, a gente pode inicializar com os valores obtidos.
 
 		System.out.print("How many contracts to this worker: ");
 		int numberOfContracts = sc.nextInt();
@@ -47,6 +48,7 @@ public class NelioAlvesJavaApplication {
 			int hours = sc.nextInt();
 
 			HourContract contract = new HourContract(contractDate, valuePerHour, hours);
+			// cada contrato gerado deve ser primeiramente instanciado
 			worker.addContract(contract);
 		}
 
@@ -58,6 +60,5 @@ public class NelioAlvesJavaApplication {
 		System.out.println("Name: " + worker.getName());
 		System.out.println("Department: " + worker.getDepartment().getName());
 		System.out.print("income for " + monthAndYear + ": " + String.format("%.2f", worker.income(year, month)));
-
 	}
 }
