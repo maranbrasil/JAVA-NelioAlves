@@ -25,4 +25,9 @@ public class BusinessAccount extends Account{ // business account tem os mesmos 
       balance += amount - 10.0; // dessa forma o balance fica com erro pois na classe mae o atributo é private(só quem é da mesma classe acessa o atributo). PAra acessar basta tranforma=lo em protected na classe mae.
     }
   }
+  @Override
+  public void withdraw(double amount) {
+    super.withdraw(amount); //com o super eu desconto normalmente como no metodo da classe Account
+    balance -= 2.0; // mas aqui eu utilizo um metodo diferente que cobra de forma diferente
+  }
 }

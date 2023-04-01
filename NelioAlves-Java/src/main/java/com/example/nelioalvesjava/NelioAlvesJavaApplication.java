@@ -20,5 +20,13 @@ public class NelioAlvesJavaApplication {
 		Account acc2 = new SavingAccount(1002, "Maria", 1000.0, 0.01);
 		acc2.withdraw(50.0);
 		System.out.printf("acc2 = %.2f",acc2.getBalance());
+
+		System.out.println();
+
+		Account acc3 = new BusinessAccount(1005, "Maran", 1000.0, 500.0);
+		acc3.withdraw(200);
+		System.out.printf("acc3 = %.2f", acc3.getBalance());
+		// nesse método acc3 é do tipo Account, mas eu fiz ele receber um tipo BusinessAccount que é do tipo
+		// Account, mas fiz implementar o método de withdraw contido de na classe BusinessAccount.
 	}
 }
