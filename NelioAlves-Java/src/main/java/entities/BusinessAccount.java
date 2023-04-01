@@ -1,6 +1,6 @@
 package entities;
 
-public class BusinessAccount extends Account{ // bussiness acccount tem os mesmos metdos e atributos da classe account
+public class BusinessAccount extends Account{ // business account tem os mesmos metedos e atributos da classe account
   private double loanLimit;
 
   public BusinessAccount() {
