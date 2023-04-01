@@ -19,7 +19,7 @@ public class BusinessAccount extends Account{ // business account tem os mesmos 
     this.loanLimit = loanLimit;
   }
 
-  public void Loan(double amount) {
+  public void loan(double amount) {
     if(amount <= loanLimit) {
       // deposit(amount); // só consigo pegar o metodo da super classe pq eu transformei essa classe que estou mexendo em herança
       balance += amount - 10.0; // dessa forma o balance fica com erro pois na classe mae o atributo é private(só quem é da mesma classe acessa o atributo). PAra acessar basta tranforma=lo em protected na classe mae.
