@@ -56,4 +56,14 @@ public class Account {
         this.balance = balance - value;
         return balance - value;
     }
+
+    public String validateWithdraw(double amount) {
+        if (amount > getWithdrawLim()) {
+            return "Withdraw error: the requested amount exceed withdraw limit.";
+        }
+        if (getBalance() < amount) {
+            return "Withdraw Error: insufficient amount in your account ";
+        }
+        return null;
+    }
 }

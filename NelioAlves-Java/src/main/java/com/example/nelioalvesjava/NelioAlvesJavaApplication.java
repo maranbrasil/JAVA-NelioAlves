@@ -30,10 +30,9 @@ public class NelioAlvesJavaApplication {
 		System.out.print("Enter amount to withdraw: ");
 		Double amount = sc.nextDouble();
 
-		if (amount > account.getWithdrawLim()) {
-			System.out.println("Withdraw error: the requested amount exceed withdraw limit.");
-		} else if (account.getBalance() < amount) {
-			System.out.println("Withdraw Error: insufficient amount in your account ");
+		String error = account.validateWithdraw(amount);
+		if (error != null) {
+			System.out.println(error);
 		} else {
 			account.withdraw(amount);
 			System.out.printf("New balance: %.2f%n", account.getBalance());
