@@ -1,6 +1,7 @@
 package com.example.nelioalvesjava;
 
 import Entities.Account;
+import Execption.BusinessException;
 
 import java.util.Locale;
 import java.util.Scanner;
@@ -30,12 +31,12 @@ public class NelioAlvesJavaApplication {
 		System.out.print("Enter amount to withdraw: ");
 		Double amount = sc.nextDouble();
 
-		String error = account.validateWithdraw(amount);
-		if (error != null) {
-			System.out.println(error);
-		} else {
+		try {
 			account.withdraw(amount);
 			System.out.printf("New balance: %.2f%n", account.getBalance());
+		}
+		catch (BusinessException e) {
+			System.out.println(e.getMessage());
 		}
 		sc.close();
 	}

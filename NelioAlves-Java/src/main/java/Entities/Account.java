@@ -1,5 +1,7 @@
 package Entities;
 
+import Execption.BusinessException;
+
 public class Account {
     private Integer accountNumber;
     private String holder;
@@ -48,22 +50,21 @@ public class Account {
         this.withdrawLim = withdrawLim;
     }
 
-    public Double deposit(double value) {
-        this.balance = balance + value;
-        return balance;
-    }
-    public Double withdraw(double value) {
-        this.balance = balance - value;
-        return balance - value;
+    public void deposit(double value) {
+        balance += value;
     }
 
-    public String validateWithdraw(double amount) {
+    public void withdraw(double value) {
+        validateWithdraw(value);
+        balance -= value;
+    }
+
+    private void validateWithdraw(double amount) {
         if (amount > getWithdrawLim()) {
-            return "Withdraw error: the requested amount exceed withdraw limit.";
+             throw new BusinessException("Withdraw error: the requested amount exceed withdraw limit.");
         }
         if (getBalance() < amount) {
-            return "Withdraw Error: insufficient amount in your account ";
+            throw new BusinessException("Withdraw Error: insufficient amount in your account ");
         }
-        return null;
     }
 }
