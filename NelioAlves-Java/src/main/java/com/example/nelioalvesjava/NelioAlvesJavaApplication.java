@@ -1,5 +1,6 @@
 package com.example.nelioalvesjava;
 
+import boardgame.Board;
 import boardgame.Position;
 
 import java.util.Locale;
@@ -9,7 +10,7 @@ public class NelioAlvesJavaApplication {
 	public static void main(String[] args) {
 //		Locale.setDefault(Locale.US);
 //		Scanner sc = new Scanner(System.in);
-		Position pos = new Position(3, 5);
-		System.out.println(pos);
+		Board board = new Board(8,8); // instancio um board com 8linhas e 8 colunas.
+		// rodo o programa pra ver se quebra algo.
 	}
 }
