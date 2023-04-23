@@ -16,7 +16,7 @@ public class NelioAlvesJavaApplication {
 		while(true) { //coloquei true, pq nao temos um metodo de checkmate pra encerrar a partida.
 			try {
 				UI.clearScreen(); // lipa a tela do terminal para nao aparecer varios boards
-				UI.printBoard(chessMatch.getPieces()); // imprimir tabuleiro na tela
+				UI.printMatch(chessMatch); // imprimir tabuleiro na tela
 				System.out.println(); // salto um linha
 				System.out.print("Source: "); // usuario digitar a posicao de origem
 				ChessPosition source = UI.readChessPosition(sc);

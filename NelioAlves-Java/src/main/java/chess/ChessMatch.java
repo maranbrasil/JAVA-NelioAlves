@@ -1,15 +1,30 @@
 package chess;
 
+import static java.awt.Color.WHITE;
+import static java.awt.Color.white;
+
 import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
 
 public class ChessMatch {
+    private int turn;
+    private Color currentPlayer;
     private Board board; // coloco um board, pq uma partida de xadrez precisa ter um tabuleiro.
 
     public ChessMatch() { // quem tem que saber a dimensao de um tabuleiro de xadrez é a classe ChessMatch
         board = new Board(8,8);
+        turn = 1; // no inicio da partida vale 1
+        currentPlayer = Color.WHITE; // a primeira peca que joga é o branco
         initialSetup();
+    }
+
+    public int getTurn() {
+        return turn;
+    }
+
+    public Color getCurrentPlayer() {
+        return currentPlayer;
     }
 
     // esse método retorna um tipo Matriz de ChessPieces
@@ -36,6 +51,7 @@ public class ChessMatch {
         validateSourcePosition(source); // validar posicao de origem, se a posicao nao existir a operacao lanca um excecao.
         validateTargetPosition(source, target); // validar posicao de destino, se a posicao nao existir a operacao lanca um excecao.
         Piece capturedPiece = makeMove(source, target); // essa var recebe a resposta de uma operacao chamada makemove
+        nextturn();
         return (ChessPiece) capturedPiece;
     }
 
@@ -50,6 +66,9 @@ public class ChessMatch {
         if (!board.thereIsAPiece(position)) {
             throw new ChessException("There is no piece on source position");
         }
+        if (currentPlayer != ((ChessPiece)board.piece(position)).getColor()) { // como o getColor é uma prop do ChessPiece, eu coloco um paretenses em boardpiece(position) e faço um downcasting de ChessPiece. ai sim posso ver a cor da peça.
+            throw new ChessException("The chosen piece is not yours");
+        }
         if (!board.piece(position).isThereAnyPossibleMove()) { // valido se a pç tem algum movimento possivel, e se nao tiver um movimento possivel lancó exceçao
             throw new ChessException("There is no possible moves to this piece");
         }
@@ -59,6 +78,11 @@ public class ChessMatch {
         if (!board.piece(source).possibleMove(target)) { // no tabuleiro, verifica se a peca na posicao source... se não tiver movimento possivel dá excecao
             throw new ChessException("The chosen piece can't move to target position");
         }
+    }
+
+    private void nextturn() { // esse metodo é chamado depois que eu executo uma jogada
+        turn++; //soma um á cada jogada.
+        currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {
