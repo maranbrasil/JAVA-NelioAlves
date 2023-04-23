@@ -1,6 +1,7 @@
 package chess;
 
 import boardgame.Board;
+import boardgame.Piece;
 import boardgame.Position;
 
 public class ChessMatch {
@@ -21,6 +22,27 @@ public class ChessMatch {
             }
         }
         return mat;
+    }
+
+    public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+        Position source = sourcePosition.toPosition(); // conversao da posicao recebida no arg para posicao da matriz
+        Position target = targetPosition.toPosition(); // conversao da posicao recebida no arg para posicao da matriz
+        validateSourcePosition(source); // validar posicao de origem, se a posicao nao existir a operacao lanca um excecao.
+        Piece capturedPiece = makeMove(source, target); // essa var recebe a resposta de uma operacao chamada makemove
+        return (ChessPiece) capturedPiece;
+    }
+
+    private Piece makeMove(Position source, Position target) { // para fazer um movimento de pça:
+        Piece p = board.removePiece(source); // primeiro removo a peça da posicao de origem
+        Piece capturedPiece = board.removePiece(target); // removi um possivel peca da possicao de destino, agora posso colocar a minha peça no local
+        board.placePiece(p, target); // coloco minha peça na posicao desejada
+        return capturedPiece; // retorno a pç capturada.
+    }
+
+    private void validateSourcePosition(Position position) {
+        if (!board.thereIsAPiece(position)) {
+            throw new ChessException("There is no piece on source position");
+        }
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {

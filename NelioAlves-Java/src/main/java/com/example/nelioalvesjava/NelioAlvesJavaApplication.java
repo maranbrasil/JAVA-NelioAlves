@@ -1,13 +1,28 @@
 package com.example.nelioalvesjava;
 
 import chess.ChessMatch;
+import chess.ChessPiece;
+import chess.ChessPosition;
+import java.util.Scanner;
 
 public class NelioAlvesJavaApplication {
 	public static void main(String[] args) {
-		// Board board = new Board(8,8); // instancio um board com 8linhas e 8 colunas.
-		// rodo o programa pra ver se quebra algo.
 
+		Scanner sc = new Scanner(System.in);
 		ChessMatch chessMatch = new ChessMatch();
-		UI.printBoard(chessMatch.getPieces());
+
+		while(true) { //coloquei true, pq nao temos um metodo de checkmate pra encerrar a partida.
+			UI.printBoard(chessMatch.getPieces()); // imprimir tabuleiro na tela
+			System.out.println(); // salto um linha
+			System.out.print("Source: "); // usuario digitar a posicao de origem
+			ChessPosition source = UI.readChessPosition(sc);
+
+			System.out.println();
+			System.out.print("Target: "); // usuario indicar a posicao de destino
+			ChessPosition target = UI.readChessPosition(sc);
+
+			ChessPiece capturedPiece = chessMatch.performChessMove(source, target); // efetua o movimento da peça da orgiem para o destino
+		}
+
 	}
 }
