@@ -6,12 +6,16 @@ import static java.awt.Color.white;
 import boardgame.Board;
 import boardgame.Piece;
 import boardgame.Position;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChessMatch {
     private int turn;
     private Color currentPlayer;
     private Board board; // coloco um board, pq uma partida de xadrez precisa ter um tabuleiro.
 
+    private List<Piece> piecesOnTheBoard = new ArrayList<>();
+    private List<Piece> capturedPieces = new ArrayList<>();
     public ChessMatch() { // quem tem que saber a dimensao de um tabuleiro de xadrez é a classe ChessMatch
         board = new Board(8,8);
         turn = 1; // no inicio da partida vale 1
@@ -51,7 +55,7 @@ public class ChessMatch {
         validateSourcePosition(source); // validar posicao de origem, se a posicao nao existir a operacao lanca um excecao.
         validateTargetPosition(source, target); // validar posicao de destino, se a posicao nao existir a operacao lanca um excecao.
         Piece capturedPiece = makeMove(source, target); // essa var recebe a resposta de uma operacao chamada makemove
-        nextturn();
+        nextTurn();
         return (ChessPiece) capturedPiece;
     }
 
@@ -59,6 +63,10 @@ public class ChessMatch {
         Piece p = board.removePiece(source); // primeiro removo a peça da posicao de origem
         Piece capturedPiece = board.removePiece(target); // removi um possivel peca da possicao de destino, agora posso colocar a minha peça no local
         board.placePiece(p, target); // coloco minha peça na posicao desejada
+        if (capturedPiece != null) {
+            piecesOnTheBoard.remove(capturedPiece);
+            capturedPieces.add(capturedPiece);
+        }
         return capturedPiece; // retorno a pç capturada.
     }
 
@@ -80,13 +88,14 @@ public class ChessMatch {
         }
     }
 
-    private void nextturn() { // esse metodo é chamado depois que eu executo uma jogada
+    private void nextTurn() { // esse metodo é chamado depois que eu executo uma jogada
         turn++; //soma um á cada jogada.
         currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
     }
 
     private void placeNewPiece(char column, int row, ChessPiece piece) {
         board.placePiece(piece, new ChessPosition(column, row).toPosition());
+        piecesOnTheBoard.add(piece); //toda peça que for instanciada pra ir pro tabuileiro deve ser colocada na lista de peças do tabuleiro.
     }
     private void initialSetup() {
         placeNewPiece('c', 1, new Rook(board, Color.WHITE));
