@@ -21,12 +21,15 @@ public class NelioAlvesJavaApplication {
 				System.out.print("Source: "); // usuario digitar a posicao de origem
 				ChessPosition source = UI.readChessPosition(sc);
 
+				boolean[][] possibleMoves = chessMatch.possibleMoves(source);
+				UI.clearScreen();
+				UI.printBoard(chessMatch.getPieces(), possibleMoves); // criado uma sobrecarga do metodo printBoard
+
 				System.out.println();
 				System.out.print("Target: "); // usuario indicar a posicao de destino
 				ChessPosition target = UI.readChessPosition(sc);
 
-				ChessPiece capturedPiece = chessMatch.performChessMove(source,
-						target); // efetua o movimento da peça da orgiem para o destino
+				ChessPiece capturedPiece = chessMatch.performChessMove(source, target); // efetua o movimento da peça da orgiem para o destino
 			} catch (ChessException e) {
 				System.out.println(e.getMessage()); // mostra o erro
 				sc.nextLine(); // aguarda o usuario digitar enter
